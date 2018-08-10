@@ -44,6 +44,7 @@ fi
 
 SERVERNUM=$(get_server_num)
 
+echo "DISPLAY PORT $SERVERNUM"
 rm -f /tmp/.X*lock
 
 xvfb-run --listen-tcp -n $SERVERNUM --server-args="-screen 0 $GEOMETRY -ac +extension RANDR" \
