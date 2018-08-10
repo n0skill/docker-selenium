@@ -46,7 +46,7 @@ SERVERNUM=$(get_server_num)
 
 rm -f /tmp/.X*lock
 
-xvfb-run -n $SERVERNUM --server-args="-screen 0 $GEOMETRY -ac +extension RANDR" \
+xvfb-run ---listen-tcp n $SERVERNUM --server-args="-screen 0 $GEOMETRY -ac +extension RANDR" \
   java ${JAVA_OPTS} -jar /opt/selenium/selenium-server-standalone.jar \
     -role node \
     -hub http://$HUB_PORT_4444_TCP_ADDR:$HUB_PORT_4444_TCP_PORT/grid/register \
