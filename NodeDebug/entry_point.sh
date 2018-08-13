@@ -65,6 +65,11 @@ DISPLAY=$DISPLAY \
     ${SE_OPTS} &
 NODE_PID=$!
 
+sleep 10
+echo "Waiting ndb 10 sec"
+ffmpeg -f x11grab -video_size 1920x1080 -i :99.0 -codec:v libx264 -r 12 /tmp/record.mp4  &
+
+
 trap shutdown SIGTERM SIGINT
 for i in $(seq 1 10)
 do

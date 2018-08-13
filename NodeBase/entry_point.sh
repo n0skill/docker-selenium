@@ -56,5 +56,9 @@ xvfb-run --listen-tcp -n $SERVERNUM --server-args="-screen 0 $GEOMETRY -ac +exte
     ${SE_OPTS} &
 NODE_PID=$!
 
+echo "Waiting and launching ffmpeg"
+sleep 10
+ffmpeg -f x11grab -video_size 1920x1080 -i :99.0 -codec:v libx264 -r 12 /tmp/record.mp4 &
+
 trap shutdown SIGTERM SIGINT
 wait $NODE_PID
